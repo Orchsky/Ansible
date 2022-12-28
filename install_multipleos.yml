@@ -9,24 +9,28 @@
       name: httpd
       state: installed
     when: ansible_os_family == "RedHat"
+    tags: install_httpd
 
   - name: Start the apache service
     service:
       name: httpd
       state: started
     when: ansible_os_family == "RedHat"
+    tags: start_httpd
 
   - name: Install specific package on ubuntu
     apt:
       name: apache2
       state: present
     when: ansible_os_family == "Debian"
+    tags: install_apache2
 
   - name: Start the httpd service
     service:
       name: apache2
       state: started
     when: ansible_os_family == "Debian"
+    tags: start_apache2
 
   - name: Copy index.html file to Ubuntu server
     copy:
