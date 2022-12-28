@@ -1,0 +1,16 @@
+---
+- hosts: appservers
+  become: true
+
+  tasks:
+  - name: Install packages
+    yum:
+     name: "{{ item }}"
+     state: installed
+    with_items:
+     - git
+     - make
+     - gzip
+     - tree
+     - wget
+     - telnet      

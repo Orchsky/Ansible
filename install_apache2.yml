@@ -1,0 +1,14 @@
+---
+- name: This playbook installs apache2 on Ubuntu vm
+  hosts: dbservers
+  become: true
+  tasks:
+  - name: This task installs apache2 
+    ansible.builtin.apt:
+      name: apache2
+      state: present
+
+  - name: This task starts the apache2 service
+    ansible.builtin.service:
+      name: apache2
+      state: started 

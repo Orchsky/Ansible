@@ -1,0 +1,15 @@
+---
+- name: This playbook removes httpd from RHEL vm 
+  hosts: webservers
+  become: true
+
+  tasks:
+    #- name: This task stops httpd
+    #service:
+    #name: httpd
+    #state: stopped
+
+  - name: This task removes httpd
+    yum:
+      name: httpd
+      state: stopped
