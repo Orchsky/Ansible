@@ -36,18 +36,3 @@
     shell: nohup ./startup.sh
     args:
       chdir: /opt/apache-tomcat-9.0.70/bin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
