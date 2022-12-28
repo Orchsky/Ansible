@@ -1,0 +1,13 @@
+---
+- name: Ansible playbook to test ansible vault
+  hosts: all 
+  become: true
+  vars_files:
+    - vault-pass.yml 
+
+  tasks:
+  - name: clone private repo from github
+    ansible.builtin.git:
+      repo: https://sharkscloud:{{ Password }}@github.com/Orchsky/ansible-vault-demo.git
+      dest: /opt/ansible/test-vault
+      version: master
