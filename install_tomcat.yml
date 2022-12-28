@@ -1,0 +1,53 @@
+---
+- name: Setup Tomcat using Ansible
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Install Java on RedHat/Amazon Linux
+    yum:
+      name: java
+      state: installed
+    when: ansible_os_family == "RedHat"
+
+  - name: Install Java on Ubuntu
+    apt:
+      name: default-jdk
+      state: present
+    when: ansible_os_family == "Debian"
+
+  - name: Download Tomcat packages
+    ansible.builtin.get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz
+      dest: /opt
+
+  - name: Untar apache tomcat
+    ansible.builtin.unarchive:
+      src: /opt/apache-tomcat-9.0.70.tar.gz
+      dest: /opt
+      remote_src: yes
+
+  - name: Add execution permissions 
+    ansible.builtin.file:
+      path: /opt/apache-tomcat-9.0.70/bin/startup.sh
+      mode: 0777
+
+  - name: Start Tomcat services
+    shell: nohup ./startup.sh
+    args:
+      chdir: /opt/apache-tomcat-9.0.70/bin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
