@@ -10,8 +10,10 @@
       state: installed
     when: ansible_os_family == "RedHat"
     tags: install_httpd
+    notify: start httpd service
 
-  - name: Start the apache service
+  handlers:
+  - name: start httpd service
     service:
       name: httpd
       state: started
@@ -24,8 +26,10 @@
       state: present
     when: ansible_os_family == "Debian"
     tags: install_apache2
+    notify: start apache2 service
 
-  - name: Start the httpd service
+  handlers:
+  - name: start apache2 service
     service:
       name: apache2
       state: started
