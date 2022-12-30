@@ -1,2 +1,26 @@
 ---
 # handlers file for setup-apache
+
+- name: start httpd service
+  service:
+    name: httpd
+    state: started
+  when: ansible_os_family == "RedHat"
+  tags: start_httpd
+
+- name: start apache2 service
+  service:
+    name: apache2
+    state: started
+  when: ansible_os_family == "Debian"
+  tags: start_apache2
+
+- name: restart httpd
+  service:
+    name: httpd
+    state: restarted
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
