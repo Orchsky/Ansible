@@ -1,0 +1,29 @@
+12/20/2022   Tuesday  Ansible 
+
+1. Ad-hoc commands 
+    1.1 ansible all -m user -a "name=Burak" -b
+
+
+12/22/2022
+1. Check if apache/httpd installed or not --> rpm -qa | grep httpd
+
+
+12/27/2022 Ansible 
+
+1. Ansible tags --> If you have a large playbook, it may be useful to run only specific parts of it 
+instead of running the entire playbook
+    1.1 ansible-playbook install_multipleos.yml --tags "start_apache2"
+    1.2 https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_tags.html
+
+2. Ansible ignore errors: https://docs.ansible.com/ansible/2.8/user_guide/playbooks_error_handling.html
+
+3. Ansible Vault: 
+    3.1 Vault means Secret Storage 
+    3.2 ansible-vault create vault-pass.yml
+    3.3 ansible-vault view vault-pass.yml 
+    3.4 ansible-vault edit vault-pass.yml
+    3.5 ansible-playbook github-clone.yml --ask-vault-pass
+
+12/28/2022  Ansible Roles (Galaxy)
+    1. Why Ansible Galaxy --> Increases resuibility, readibily and modularity 
+    2.  ansible-galaxy init setup-apache --> Creates ansible folder structure 
